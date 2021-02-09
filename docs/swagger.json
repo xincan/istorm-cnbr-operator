@@ -1,0 +1,233 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "提供加减乘除工具",
+        "title": "计算器API",
+        "termsOfService": "http://www.hatech.com.cn",
+        "contact": {
+            "name": "hatech",
+            "url": "http://www.hatech.com.cn",
+            "email": "hatech@hatech.com.cn"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/add/{num1}/{num2}": {
+            "get": {
+                "description": "根据两个数字求和",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "运算相关函数"
+                ],
+                "summary": "求和函数(get请求，【path，application/json方式】，路径中有参数)",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 36,
+                        "description": "第一个数字",
+                        "name": "num1",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 4,
+                        "description": "第二个数字",
+                        "name": "num2",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "interface"
+                        }
+                    }
+                }
+            }
+        },
+        "/ave": {
+            "post": {
+                "description": "根据两个数字求平均值",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "tags": [
+                    "运算相关函数"
+                ],
+                "summary": "求平均值函数(post请求，【query，application/x-www-form-urlencoded方式】，路径没有参数)",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 36,
+                        "description": "第一个数字",
+                        "name": "num1",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 4,
+                        "description": "第二个数字",
+                        "name": "num2",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "interface"
+                        }
+                    }
+                }
+            }
+        },
+        "/div": {
+            "post": {
+                "description": "根据两个数字求商",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "运算相关函数"
+                ],
+                "summary": "求商函数(post请求，【body, application/json方式】，路径没有参数)",
+                "parameters": [
+                    {
+                        "description": "k8s对象",
+                        "name": "kubernetes",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.KubernetesDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "interface"
+                        }
+                    }
+                }
+            }
+        },
+        "/mul/{num1}/{num2}": {
+            "post": {
+                "description": "根据两个数字求乘积",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "运算相关函数"
+                ],
+                "summary": "求乘积函数(post请求，【path，application/json方式】，路径有参数)",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 36,
+                        "description": "第一个数字",
+                        "name": "num1",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 4,
+                        "description": "第二个数字",
+                        "name": "num2",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "interface"
+                        }
+                    }
+                }
+            }
+        },
+        "/sub": {
+            "get": {
+                "description": "根据两个殊字求两个数字之减",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "运算相关函数"
+                ],
+                "summary": "求差函数(get请求，【query，application/json方式】，路径上没有参数)",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 36,
+                        "description": "第一个数字",
+                        "name": "num1",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 4,
+                        "description": "第二个数字",
+                        "name": "num2",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "interface"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dto.KubernetesDto": {
+            "type": "object",
+            "properties": {
+                "num1": {
+                    "description": "第一个殊字",
+                    "type": "integer",
+                    "example": 36
+                },
+                "num2": {
+                    "description": "第二个殊字",
+                    "type": "integer",
+                    "example": 4
+                }
+            }
+        }
+    }
+}
