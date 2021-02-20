@@ -21,9 +21,9 @@ func Router() *mux.Router {
 		httpSwagger.DomID("#swagger-ui"),
 	))
 	// kubernetes路由列表
-	router.Methods("GET").Path(`/add/{num1:\d+}/{num2:\d+}`).Handler(handler.AddKubernetesHandler())
+	router.Methods("GET").Path("/add").Handler(handler.AddKubernetesHandler())
 	router.Methods("GET").Path("/sub").Handler(handler.SubKubernetesHandler())
-	router.Methods("POST").Path(`/mul/{num1:\d+}/{num2:\d+}`).Handler(handler.MulKubernetesHandler())
+	router.Methods("POST").Path("/mul").Handler(handler.MulKubernetesHandler())
 	router.Methods("POST").Path("/div").Handler(handler.DivKubernetesHandler())
 	router.Methods("POST").Path("/ave").Handler(handler.AveKubernetesHandler())
 	return router
