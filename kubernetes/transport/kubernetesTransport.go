@@ -9,7 +9,6 @@ import (
 	"encoding/json"
 	"hatech.com.cn/istorm-cnbr-operator/dto"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strconv"
 )
@@ -80,10 +79,7 @@ func DecodeMulKubernetesRequest(_ context.Context, r *http.Request) (interface{}
 // @Auth      		jiangxincan@hatech.com.cn         时间（2021/1/22 11:36）
 // @Return			dto.KubernetesDto				  "kubernetes传参对象"
 func DecodeDivKubernetesRequest(_ context.Context, r *http.Request) (interface{}, error) {
-	body, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		log.Println(err)
-	}
+	body, _ := ioutil.ReadAll(r.Body)
 	var kubernetesDto dto.KubernetesDto
 	_ = json.Unmarshal(body, &kubernetesDto)
 	return kubernetesDto, nil

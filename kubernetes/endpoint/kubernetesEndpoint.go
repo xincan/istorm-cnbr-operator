@@ -10,7 +10,6 @@ import (
 	"hatech.com.cn/istorm-cnbr-operator/dto"
 	"hatech.com.cn/istorm-cnbr-operator/kubernetes/service"
 	resp "hatech.com.cn/istorm-cnbr-operator/utils/response"
-	"log"
 )
 
 // Title    		求和结果端点函数
@@ -22,7 +21,7 @@ func MakeAddKubernetesEndpoint(kubernetesService service.IKubernetesService) end
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		req := request.(dto.KubernetesDto)
 		result, _ := kubernetesService.Add(req.Num1, req.Num2)
-		return resp.ResultSuccess(&result), nil
+		return resp.ResultSuccess(result), nil
 	}
 }
 
@@ -34,9 +33,8 @@ func MakeAddKubernetesEndpoint(kubernetesService service.IKubernetesService) end
 func MakeSubKubernetesEndpoint(kubernetesService service.IKubernetesService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		req := request.(dto.KubernetesDto)
-		log.Printf("endpoint:  %v", req)
 		result, _ := kubernetesService.Sub(req.Num1, req.Num2)
-		return resp.ResultSuccess(&result), nil
+		return resp.ResultSuccess(result), nil
 	}
 }
 
@@ -49,7 +47,7 @@ func MakeMulKubernetesEndpoint(kubernetesService service.IKubernetesService) end
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		req := request.(dto.KubernetesDto)
 		result, _ := kubernetesService.Mul(req.Num1, req.Num2)
-		return resp.ResultSuccess(&result), nil
+		return resp.ResultSuccess(result), nil
 	}
 }
 
@@ -63,9 +61,9 @@ func MakeDivKubernetesEndpoint(kubernetesService service.IKubernetesService) end
 		req := request.(dto.KubernetesDto)
 		result, e := kubernetesService.Div(req.Num1, req.Num2)
 		if result == nil && e != nil {
-			return resp.ResultError(e, req), nil
+			return resp.ResultError(e, req), e
 		}
-		return resp.ResultSuccess(&result), nil
+		return resp.ResultSuccess(result), nil
 	}
 }
 
@@ -78,6 +76,6 @@ func MakeAveKubernetesEndpoint(kubernetesService service.IKubernetesService) end
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		req := request.(dto.KubernetesDto)
 		result, _ := kubernetesService.Ave(req.Num1, req.Num2)
-		return resp.ResultSuccess(&result), nil
+		return resp.ResultSuccess(result), nil
 	}
 }
