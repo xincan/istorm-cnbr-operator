@@ -52,9 +52,12 @@ func SetRemoteConfig() {
 		go func(rc <-chan bool) {
 			for {
 				<-rc
-				logrus.WithField("config", configViper.Get("config")).Error("Viper remote get data config")
-				logrus.WithField("service", configViper.Get("service")).Error("Viper remote get data service")
-				logrus.WithField("nacos", configViper.Get("nacos")).Error("Viper remote get data nacos")
+				logrus.WithFields(logrus.Fields{
+					"config":  configViper.Get("config"),
+					"service": configViper.Get("service"),
+					"nacos":   configViper.Get("nacos"),
+				}).Error("Viper remote get data config")
+
 			}
 		}(respChan)
 	}
