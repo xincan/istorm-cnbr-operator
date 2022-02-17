@@ -52,7 +52,6 @@ func SetRemoteConfig() {
 		go func(rc <-chan bool) {
 			for {
 				<-rc
-				//fmt.Printf("remote async: %s", configViper.GetString("person.name"))
 				logrus.WithField("config", configViper.Get("config")).Error("Viper remote get data config")
 				logrus.WithField("service", configViper.Get("service")).Error("Viper remote get data service")
 				logrus.WithField("nacos", configViper.Get("nacos")).Error("Viper remote get data nacos")
