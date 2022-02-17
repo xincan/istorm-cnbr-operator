@@ -5,7 +5,6 @@
 package config
 
 import (
-	"fmt"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	_ "github.com/spf13/viper/remote"
@@ -46,7 +45,7 @@ func SetRemoteConfig() {
 	err = remoteViper.ReadRemoteConfig()
 	if err == nil {
 		configViper = remoteViper
-		fmt.Println("used remote viper")
+		logrus.WithField("success", true).Error("Viper 使用远程Nacos配置中心数据")
 		provider := remote.NewRemoteProvider("yaml")
 		respChan := provider.WatchRemoteConfigOnChannel(configViper)
 		go func(rc <-chan bool) {
