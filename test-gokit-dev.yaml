@@ -1,0 +1,21 @@
+config:
+  name: zhangsan
+  age: 23
+
+service:
+  name: istorm-cnbr-operator
+  port: 8080
+
+nacos:
+  cacheDir: "D:\\nacos-go-log\\cache"
+  LogDir: "D:\\nacos-go-log\\log"
+  timeoutMs: 5000
+  client:
+    ip: 192.168.1.81
+    port: 31150
+    namespaceId: xincan-dev-0001
+    group: dev_group
+    username: nacos
+    password: nacos
+  config:
+    dataId: test-gokit-dev.yaml

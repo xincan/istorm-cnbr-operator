@@ -6,6 +6,7 @@ package main
 
 import (
 	"github.com/sirupsen/logrus"
+	"hatech.com.cn/istorm-cnbr-operator/config"
 	_ "hatech.com.cn/istorm-cnbr-operator/docs"
 	"hatech.com.cn/istorm-cnbr-operator/logs"
 	"net/http"
@@ -28,8 +29,12 @@ var log = logrus.New()
 // @Return    			router        	*mux.Router     "返回路由对象"
 func main() {
 
-	hook := logs.NewHook("d:/golog.log")
-	logrus.WithField("file", "d:/log/golog.log").Info("日志信息存放地址: ")
-	logrus.AddHook(hook)
+	logrus.WithField("file", "d:/log/golog.log").Info("日志信息存放地址")
+	logrus.AddHook(logs.NewHook("d:/log/golog.log"))
+	config.SetYaml()
+	config.SetRemoteConfig()
+	config.NacosRegisterInstance()
+
+	logrus.WithField("port", 8080).Info("服务启动端口")
 	_ = http.ListenAndServe(":8080", Router())
 }

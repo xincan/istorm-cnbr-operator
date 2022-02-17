@@ -7,7 +7,8 @@ package main
 import (
 	"github.com/gorilla/mux"
 	httpSwagger "github.com/swaggo/http-swagger"
-	"hatech.com.cn/istorm-cnbr-operator/kubernetes/handler"
+	kubernetes "hatech.com.cn/istorm-cnbr-operator/kubernetes/handler"
+	person "hatech.com.cn/istorm-cnbr-operator/nacos/handler"
 )
 
 // Title    		路由列表
@@ -21,10 +22,13 @@ func Router() *mux.Router {
 		httpSwagger.DomID("#swagger-ui"),
 	))
 	// kubernetes路由列表
-	router.Methods("GET").Path("/add").Handler(handler.AddKubernetesHandler())
-	router.Methods("GET").Path("/sub").Handler(handler.SubKubernetesHandler())
-	router.Methods("POST").Path("/mul").Handler(handler.MulKubernetesHandler())
-	router.Methods("POST").Path("/div").Handler(handler.DivKubernetesHandler())
-	router.Methods("POST").Path("/ave").Handler(handler.AveKubernetesHandler())
+	router.Methods("GET").Path("/add").Handler(kubernetes.AddKubernetesHandler())
+	router.Methods("GET").Path("/sub").Handler(kubernetes.SubKubernetesHandler())
+	router.Methods("POST").Path("/mul").Handler(kubernetes.MulKubernetesHandler())
+	router.Methods("POST").Path("/div").Handler(kubernetes.DivKubernetesHandler())
+	router.Methods("POST").Path("/ave").Handler(kubernetes.AveKubernetesHandler())
+
+	// Nacos路由列表
+	router.Methods("GET").Path("/person").Handler(person.GetPersonHandler())
 	return router
 }

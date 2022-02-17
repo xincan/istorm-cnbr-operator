@@ -186,6 +186,47 @@ var doc = `{
                 }
             }
         },
+        "/person": {
+            "get": {
+                "description": "获取人员信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Nacos操作"
+                ],
+                "summary": "获取人员信息(get请求，【query，application/json方式】，路径中有参数)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "张三",
+                        "description": "姓名",
+                        "name": "name",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 44,
+                        "description": "年龄",
+                        "name": "age",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "interface"
+                        }
+                    }
+                }
+            }
+        },
         "/sub": {
             "get": {
                 "description": "根据两个殊字求两个数字之减",
