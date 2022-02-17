@@ -24,7 +24,7 @@ func SetYaml() {
 	logrus.Info("Viper插件加载本地配置数据成功")
 }
 
-func SetRemoteConfig() {
+func SetRemoteConfig() *viper.Viper {
 	configViper := viper.New()
 	runtimeViper := configViper
 	runtimeViper.SetConfigFile("./test-gokit-dev.yaml")
@@ -61,5 +61,5 @@ func SetRemoteConfig() {
 		}(respChan)
 	}
 	RemoteConfig = configViper
-
+	return configViper
 }

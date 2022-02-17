@@ -29,12 +29,18 @@ var log = logrus.New()
 // @Return    			router        	*mux.Router     "返回路由对象"
 func main() {
 
-	logrus.WithField("file", "d:/log/golog.log").Info("日志信息存放地址")
-	logrus.AddHook(logs.NewHook("d:/log/golog.log"))
+	// 配置本地yaml读取
 	config.SetYaml()
-	config.SetRemoteConfig()
+	// 配置远程yaml读取
+	setRemoteConfig := config.SetRemoteConfig()
+
+	// 配置日志
+	logrus.WithField("file", setRemoteConfig.GetString("service.log")).Info("日志信息存放地址")
+	logrus.AddHook(logs.NewHook(setRemoteConfig.GetString("service.log")))
+
+	// 配置注册中心
 	config.NacosRegisterInstance()
 
-	logrus.WithField("port", 8080).Info("服务启动端口")
-	_ = http.ListenAndServe(":8080", Router())
+	logrus.WithField("port", setRemoteConfig.GetUint64("service.port")).Info("服务启动端口")
+	_ = http.ListenAndServe(":"+setRemoteConfig.GetString("service.port"), Router())
 }

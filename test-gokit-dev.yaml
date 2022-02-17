@@ -5,6 +5,7 @@ config:
 service:
   name: istorm-cnbr-operator
   port: 8080
+  log: "d:/log/golog.log"
 
 nacos:
   cacheDir: "D:\\nacos-go-log\\cache"
