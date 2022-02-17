@@ -11,10 +11,13 @@ import (
 	remote "github.com/yoyofxteam/nacos-viper-remote"
 )
 
-var RemoteConfig *viper.Viper
+var (
+	RemoteConfig *viper.Viper
+	yamlFile     string = "test-gokit-dev"
+)
 
 func SetYaml() {
-	viper.SetConfigName("test-gokit-dev")
+	viper.SetConfigName(yamlFile)
 	viper.AddConfigPath(".")
 	viper.SetConfigType("yaml")
 	err := viper.ReadInConfig()
@@ -27,20 +30,20 @@ func SetYaml() {
 func SetRemoteConfig() *viper.Viper {
 	configViper := viper.New()
 	runtimeViper := configViper
-	runtimeViper.SetConfigFile("./test-gokit-dev.yaml")
+	runtimeViper.SetConfigFile("./" + yamlFile + ".yaml")
 	_ = runtimeViper.ReadInConfig()
 	remote.SetOptions(&remote.Option{
-		Url:         "192.168.1.81",
-		Port:        31150,
-		NamespaceId: "xincan-dev-0001",
-		GroupName:   "dev_group",
+		Url:         configViper.GetString("nacos.client.ip"),
+		Port:        configViper.GetUint64("nacos.client.port"),
+		NamespaceId: configViper.GetString("nacos.client.namespaceId"),
+		GroupName:   configViper.GetString("nacos.client.group"),
 		Config: remote.Config{
-			DataId: "test-gokit-dev.yaml",
+			DataId: configViper.GetString("nacos.config.dataId"),
 		},
 		Auth: nil,
 	})
 	remoteViper := viper.New()
-	err := remoteViper.AddRemoteProvider("nacos", "192.168.1.81", "")
+	err := remoteViper.AddRemoteProvider("nacos", configViper.GetString("nacos.client.ip"), "")
 	remoteViper.SetConfigType("yaml")
 	err = remoteViper.ReadRemoteConfig()
 	if err == nil {
