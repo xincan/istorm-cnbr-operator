@@ -58,7 +58,7 @@ func SetRemoteConfig() *viper.Viper {
 					"config":  configViper.Get("config"),
 					"service": configViper.Get("service"),
 					"nacos":   configViper.Get("nacos"),
-				}).Error("Viper remote get data config")
+				}).Info("Viper获取远程Nacos配置中心配置数据")
 
 			}
 		}(respChan)
