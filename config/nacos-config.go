@@ -101,8 +101,8 @@ func setNacosConfigClient(serverConfig []constant.ServerConfig, clientConfig con
  **/
 func setNacosConfigLister(configClient config_client.IConfigClient) {
 	configClient.ListenConfig(vo.ConfigParam{
-		DataId: "test-gokit-dev.yaml",
-		Group:  "dev_group",
+		DataId: viper.GetString("nacos.config.dataId"),
+		Group:  viper.GetString("nacos.client.group"),
 		OnChange: func(namespace, group, dataId, data string) {
 			logrus.WithFields(logrus.Fields{
 				"dataId": dataId,

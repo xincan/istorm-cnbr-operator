@@ -12,10 +12,6 @@ import (
 	"net/http"
 )
 
-// logrus提供了New()函数来创建一个logrus的实例。
-// 项目中，可以创建任意数量的logrus实例。
-var log = logrus.New()
-
 // @Title 计算器API
 // @version 1.0
 // @Description 提供加减乘除工具
@@ -30,17 +26,18 @@ var log = logrus.New()
 func main() {
 
 	// 配置本地yaml读取
-	config.SetYaml()
+	config.SetViperYaml()
+
 	// 配置远程yaml读取
-	setRemoteConfig := config.SetRemoteConfig()
+	setViperRemoteYaml := config.SetViperRemoteYaml()
 
 	// 配置日志
-	logrus.WithField("file", setRemoteConfig.GetString("service.log")).Info("日志信息存放地址")
-	logrus.AddHook(logs.NewHook(setRemoteConfig.GetString("service.log")))
+	logrus.WithField("file", setViperRemoteYaml.GetString("service.log")).Info("日志信息存放地址")
+	logrus.AddHook(logs.NewHook(setViperRemoteYaml.GetString("service.log")))
 
 	// 配置注册中心
 	config.NacosRegisterInstance()
 
-	logrus.WithField("port", setRemoteConfig.GetUint64("service.port")).Info("服务启动端口")
-	_ = http.ListenAndServe(":"+setRemoteConfig.GetString("service.port"), Router())
+	logrus.WithField("port", setViperRemoteYaml.GetUint64("service.port")).Info("服务启动端口")
+	_ = http.ListenAndServe(":"+setViperRemoteYaml.GetString("service.port"), Router())
 }

@@ -13,10 +13,10 @@ import (
 
 var (
 	RemoteConfig *viper.Viper
-	yamlFile     string = "test-gokit-dev"
+	yamlFile     = "istorm-cnbr-operator-dev"
 )
 
-func SetYaml() {
+func SetViperYaml() {
 	viper.SetConfigName(yamlFile)
 	viper.AddConfigPath(".")
 	viper.SetConfigType("yaml")
@@ -27,7 +27,7 @@ func SetYaml() {
 	logrus.Info("Viper插件加载本地配置数据成功")
 }
 
-func SetRemoteConfig() *viper.Viper {
+func SetViperRemoteYaml() *viper.Viper {
 	configViper := viper.New()
 	runtimeViper := configViper
 	runtimeViper.SetConfigFile("./" + yamlFile + ".yaml")

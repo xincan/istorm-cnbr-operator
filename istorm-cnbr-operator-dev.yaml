@@ -1,5 +1,5 @@
 config:
-  name: zhangsan
+  name: 测试asdfasdf
   age: 23
 
 service:
@@ -19,4 +19,4 @@ nacos:
     username: nacos
     password: nacos
   config:
-    dataId: test-gokit-dev.yaml
+    dataId: istorm-cnbr-operator-dev.yaml
