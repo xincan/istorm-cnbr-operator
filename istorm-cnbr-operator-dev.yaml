@@ -1,5 +1,5 @@
 config:
-  name: 测试阿斯蒂
+  name: 测试
   age: 23
 
 service:
@@ -19,4 +19,5 @@ nacos:
     username: nacos
     password: nacos
   config:
+    eanbled: false
     dataId: istorm-cnbr-operator-dev.yaml

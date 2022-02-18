@@ -72,8 +72,10 @@ func setNacosNamingClient(serverConfig []constant.ServerConfig, clientConfig con
 		logrus.WithField("fail", err).Error("配置Nacos租户注册中心失败")
 		return nil
 	}
-
-	setNacosConfigClient(serverConfig, clientConfig)
+	// 是否配置nacos配置中心数据动态更新，默认为：false，不开启，使用viper进行远程更新
+	if viper.GetBool("nacos.config.enabled") {
+		setNacosConfigClient(serverConfig, clientConfig)
+	}
 	return namingClient
 }
 
