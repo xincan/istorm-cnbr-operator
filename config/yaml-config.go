@@ -58,7 +58,7 @@ func SetViperRemoteYaml() *viper.Viper {
 	err = remoteViper.ReadRemoteConfig()
 	if err == nil {
 		configViper = remoteViper
-		logrus.WithField("success", true).Info("Viper 使用远程Nacos配置中心数据")
+		logrus.WithFields(logrus.Fields{"config": configViper.Get("config"), "service": configViper.Get("service"), "nacos": configViper.Get("nacos")}).Info("Viper 远程获取 Nacos 配置中心配置数据")
 		remoteProvider := remote.NewRemoteProvider(suffix)
 		watchRemoteConfigOnChannel := remoteProvider.WatchRemoteConfigOnChannel(configViper)
 		go func(rc <-chan bool) {
@@ -68,7 +68,7 @@ func SetViperRemoteYaml() *viper.Viper {
 					"config":  configViper.Get("config"),
 					"service": configViper.Get("service"),
 					"nacos":   configViper.Get("nacos"),
-				}).Info("Viper 获取远程Nacos配置中心配置数据")
+				}).Info("Viper 更新远程 Nacos 配置中心配置数据")
 			}
 		}(watchRemoteConfigOnChannel)
 	}
