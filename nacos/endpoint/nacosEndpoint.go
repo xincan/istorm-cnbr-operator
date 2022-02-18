@@ -1,7 +1,7 @@
 // Title  nacosEndpoint.go
 // Description  nacosEndpoint端点
-// Author  jiangxincan@hatech.com.cn  2021/1/22 11:36
-// update  jiangxincan@hatech.com.cn  2021/1/22 11:36
+// Author  jiangxincan@hatech.com.cn  2022/02/17 11:36
+// update  jiangxincan@hatech.com.cn  2022/02/17 11:36
 package endpoint
 
 import (
@@ -12,11 +12,11 @@ import (
 	resp "hatech.com.cn/istorm-cnbr-operator/utils/response"
 )
 
-// Title    		求和结果端点函数
-// Description   	两个数相加求和
-// Auth      		jiangxincan@hatech.com.cn         时间（2021/1/22 11:36）
-// Param    		nacosService     service.InacosService    "计算机接口"
-// Return     		responseResult        resp.ResponseResult       	"返回统一封装结果"
+// Title    		获取Nacos远程人员配置信息函数
+// Description   	获取人员信息
+// Auth      		jiangxincan@hatech.com.cn         	时间（2022/02/17 11:36）
+// Param    		nacosService     					service.InacosService    	"获取Nacos远程配置信息人员接口"
+// Return     		responseResult        				resp.ResponseResult       	"返回统一封装结果"
 func GetPersonEndpoint(nacosService *service.NacosService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		req, _ := request.(dto.NacosDto)

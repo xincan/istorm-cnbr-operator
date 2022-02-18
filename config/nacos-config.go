@@ -15,8 +15,11 @@ import (
 	"github.com/spf13/viper"
 )
 
+// Title    			NacosRegisterInstance
+// Description   		配置nacos注册实例
+// Auth      			jiangxincan@hatech.com.cn       			时间（2022/02/17 11:36）
+// Return    			nil     									"无返回值"
 func NacosRegisterInstance() {
-
 	// Nacos服务配置
 	serverConfig := []constant.ServerConfig{
 		{
@@ -37,7 +40,6 @@ func NacosRegisterInstance() {
 			MaxSize: 1,
 		},
 	}
-
 	nacosConfigInstance := setNacosNamingClient(serverConfig, clientConfig)
 	boo, err := nacosConfigInstance.RegisterInstance(vo.RegisterInstanceParam{
 		Ip:          viper.GetString("nacos.client.ip"),
@@ -56,12 +58,10 @@ func NacosRegisterInstance() {
 	logrus.WithField("success", boo).Info("Nacos服务注册成功")
 }
 
-/***
- * 设置注册中心
- * @author JiangXincan
- * @date 2022/2/16 16:41
- * @return null
- **/
+// Title    			setNacosNamingClient
+// Description   		设置Nacos命名空间客户端
+// Auth      			jiangxincan@hatech.com.cn       			时间（2022/02/17 11:36）
+// Return    			naming_client.INamingClient     			"返回Nacos命名空间客户端接口"
 func setNacosNamingClient(serverConfig []constant.ServerConfig, clientConfig constant.ClientConfig) naming_client.INamingClient {
 	// 配置租户注册中心
 	var namingClient, err = clients.NewNamingClient(vo.NacosClientParam{
@@ -77,11 +77,10 @@ func setNacosNamingClient(serverConfig []constant.ServerConfig, clientConfig con
 	return namingClient
 }
 
-/***
- * 设置配置中心
- * @author JiangXincan
- * @date 2022/2/16 16:41
- **/
+// Title    			setNacosConfigClient
+// Description   		设置Nacos配置中心客户端
+// Auth      			jiangxincan@hatech.com.cn       			时间（2022/02/17 11:36）
+// Return    			nil     									"无返回值"
 func setNacosConfigClient(serverConfig []constant.ServerConfig, clientConfig constant.ClientConfig) {
 	configClient, err := clients.NewConfigClient(vo.NacosClientParam{
 		ClientConfig:  &clientConfig,
@@ -93,12 +92,10 @@ func setNacosConfigClient(serverConfig []constant.ServerConfig, clientConfig con
 	setNacosConfigLister(configClient)
 }
 
-/***
- * 监听、更新、获取Nacos配置中心数据
- * @param configClient nacos配置中心客户端对象
- * @author JiangXincan
- * @date 2022/2/16 16:39
- **/
+// Title    			setNacosConfigLister
+// Description   		设置Nacos配置中心数据监听
+// Auth      			jiangxincan@hatech.com.cn       			时间（2022/02/17 11:36）
+// Return    			naming_client.INamingClient     			"无返回值"
 func setNacosConfigLister(configClient config_client.IConfigClient) {
 	configClient.ListenConfig(vo.ConfigParam{
 		DataId: viper.GetString("nacos.config.dataId"),

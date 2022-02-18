@@ -1,7 +1,7 @@
 // Title  nacosHandler.go
 // Description  nacosHandler协调适配器
-// Author  jiangxincan@hatech.com.cn  2021/1/22 11:36
-// update  jiangxincan@hatech.com.cn  2021/1/22 11:36
+// Author  jiangxincan@hatech.com.cn  2022/02/17 11:36
+// update  jiangxincan@hatech.com.cn  2022/02/17 11:36
 package handler
 
 import (
@@ -12,10 +12,10 @@ import (
 	"hatech.com.cn/istorm-cnbr-operator/utils"
 )
 
-// Title    		求和协调适配器函数
-// Description   	求和协调适配器函数
-// Auth      		jiangxincan@hatech.com.cn         时间（2021/1/22 11:36）
-// Return    		httpServer        *http.Server    "求和服务"
+// Title    		获取人员信息协调适配器函数
+// Description   	获取人员信息协调适配器函数
+// Auth      		jiangxincan@hatech.com.cn         	时间（2022/02/17 11:36）
+// Return    		httpServer        					*http.Server    "求和服务"
 func GetPersonHandler() *http.Server {
 	nacosService := service.NacosServiceImpl()
 	add := endpoint.GetPersonEndpoint(nacosService)
