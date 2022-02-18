@@ -1,15 +1,15 @@
 config:
-  name: 测试asdfasdf
+  name: 测试阿斯蒂
   age: 23
 
 service:
   name: istorm-cnbr-operator
   port: 8080
-  log: "d:/log/golog.log"
+  log: "D:/go-log/golog.log"
 
 nacos:
-  cacheDir: "D:\\nacos-go-log\\cache"
-  LogDir: "D:\\nacos-go-log\\log"
+  cacheDir: "D:/go-log/nacos/cache"
+  LogDir: "D:/go-log/nacos/log"
   timeoutMs: 5000
   client:
     ip: 192.168.1.81

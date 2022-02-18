@@ -13,13 +13,19 @@ import (
 
 var (
 	RemoteConfig *viper.Viper
-	yamlFile     = "istorm-cnbr-operator-dev"
+	filName      = "istorm-cnbr-operator-dev"
+	suffix       = "yaml"
+	provider     = "nacos"
 )
 
+// Title    			SetViperYaml
+// Description   		设置本地读取yaml
+// Auth      			jiangxincan@hatech.com.cn       			时间（2022/02/17 11:36）
+// Return    			naming_client.INamingClient     			"无返回值"
 func SetViperYaml() {
-	viper.SetConfigName(yamlFile)
+	viper.SetConfigName(filName)
 	viper.AddConfigPath(".")
-	viper.SetConfigType("yaml")
+	viper.SetConfigType(suffix)
 	err := viper.ReadInConfig()
 	if err != nil {
 		logrus.Error("Viper插件加载本地配置数据失败")
@@ -27,10 +33,14 @@ func SetViperYaml() {
 	logrus.Info("Viper插件加载本地配置数据成功")
 }
 
+// Title    			SetViperRemoteYaml
+// Description   		设置远程读取yaml
+// Auth      			jiangxincan@hatech.com.cn       			时间（2022/02/17 11:36）
+// Return    			*viper.Viper     							"Viper yaml 解析器实例"
 func SetViperRemoteYaml() *viper.Viper {
 	configViper := viper.New()
 	runtimeViper := configViper
-	runtimeViper.SetConfigFile("./" + yamlFile + ".yaml")
+	runtimeViper.SetConfigFile("./" + filName + "." + suffix)
 	_ = runtimeViper.ReadInConfig()
 	remote.SetOptions(&remote.Option{
 		Url:         configViper.GetString("nacos.client.ip"),
@@ -43,14 +53,14 @@ func SetViperRemoteYaml() *viper.Viper {
 		Auth: nil,
 	})
 	remoteViper := viper.New()
-	err := remoteViper.AddRemoteProvider("nacos", configViper.GetString("nacos.client.ip"), "")
-	remoteViper.SetConfigType("yaml")
+	err := remoteViper.AddRemoteProvider(provider, configViper.GetString("nacos.client.ip"), "")
+	remoteViper.SetConfigType(suffix)
 	err = remoteViper.ReadRemoteConfig()
 	if err == nil {
 		configViper = remoteViper
-		logrus.WithField("success", true).Error("Viper 使用远程Nacos配置中心数据")
-		provider := remote.NewRemoteProvider("yaml")
-		respChan := provider.WatchRemoteConfigOnChannel(configViper)
+		logrus.WithField("success", true).Info("Viper 使用远程Nacos配置中心数据")
+		remoteProvider := remote.NewRemoteProvider(suffix)
+		watchRemoteConfigOnChannel := remoteProvider.WatchRemoteConfigOnChannel(configViper)
 		go func(rc <-chan bool) {
 			for {
 				<-rc
@@ -58,10 +68,9 @@ func SetViperRemoteYaml() *viper.Viper {
 					"config":  configViper.Get("config"),
 					"service": configViper.Get("service"),
 					"nacos":   configViper.Get("nacos"),
-				}).Info("Viper获取远程Nacos配置中心配置数据")
-
+				}).Info("Viper 获取远程Nacos配置中心配置数据")
 			}
-		}(respChan)
+		}(watchRemoteConfigOnChannel)
 	}
 	RemoteConfig = configViper
 	return configViper
