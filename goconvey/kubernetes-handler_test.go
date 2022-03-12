@@ -8,8 +8,8 @@ import (
 	_ "github.com/gavv/httpexpect/v2"
 	_ "github.com/golang/mock/gomock"
 	. "github.com/smartystreets/goconvey/convey"
-	"hatech.com.cn/istorm-cnbr-operator/kubernetes/handler"
 	"testing"
+	"xincan.com.cn/istorm-cnbr-operator/kubernetes/handler"
 )
 
 // mock handler 测试

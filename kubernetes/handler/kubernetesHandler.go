@@ -6,10 +6,10 @@ package handler
 
 import (
 	"github.com/go-kit/kit/transport/http"
-	"hatech.com.cn/istorm-cnbr-operator/kubernetes/endpoint"
-	"hatech.com.cn/istorm-cnbr-operator/kubernetes/service"
-	"hatech.com.cn/istorm-cnbr-operator/kubernetes/transport"
-	"hatech.com.cn/istorm-cnbr-operator/utils"
+	"xincan.com.cn/istorm-cnbr-operator/kubernetes/endpoint"
+	"xincan.com.cn/istorm-cnbr-operator/kubernetes/service"
+	"xincan.com.cn/istorm-cnbr-operator/kubernetes/transport"
+	"xincan.com.cn/istorm-cnbr-operator/utils"
 )
 
 // Title    		求和协调适配器函数

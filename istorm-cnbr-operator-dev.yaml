@@ -1,23 +1,25 @@
 config:
-  name: 测试
-  age: 23
+  log:
+    level: info
 
 service:
   name: istorm-cnbr-operator
-  port: 8080
-  log: "D:/go-log/golog.log"
+  port: 7878
+  log: "./tmp/log/operator.log"
 
 nacos:
-  cacheDir: "D:/go-log/nacos/cache"
-  LogDir: "D:/go-log/nacos/log"
+  ip: 172.16.124.140
+  port: 31150
+  username: nacos
+  password: nacos
+  cacheDir: "./tmp/log/operator/nacos/cache"
+  LogDir: "./tmp/log/operator/nacos/log"
   timeoutMs: 5000
   client:
-    ip: 192.168.1.81
-    port: 31150
     namespaceId: xincan-dev-0001
-    group: dev_group
-    username: nacos
-    password: nacos
+    group: istorm-one
   config:
-    eanbled: false
+    checked: viper
+    namespaceId: xincan-dev-0001
+    group: istorm-cnbr
     dataId: istorm-cnbr-operator-dev.yaml

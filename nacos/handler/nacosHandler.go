@@ -6,10 +6,10 @@ package handler
 
 import (
 	"github.com/go-kit/kit/transport/http"
-	"hatech.com.cn/istorm-cnbr-operator/nacos/endpoint"
-	"hatech.com.cn/istorm-cnbr-operator/nacos/service"
-	"hatech.com.cn/istorm-cnbr-operator/nacos/transport"
-	"hatech.com.cn/istorm-cnbr-operator/utils"
+	"xincan.com.cn/istorm-cnbr-operator/nacos/endpoint"
+	"xincan.com.cn/istorm-cnbr-operator/nacos/service"
+	"xincan.com.cn/istorm-cnbr-operator/nacos/transport"
+	"xincan.com.cn/istorm-cnbr-operator/utils"
 )
 
 // Title    		获取人员信息协调适配器函数

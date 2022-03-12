@@ -7,8 +7,8 @@ package main
 import (
 	"github.com/gorilla/mux"
 	httpSwagger "github.com/swaggo/http-swagger"
-	kubernetes "hatech.com.cn/istorm-cnbr-operator/kubernetes/handler"
-	person "hatech.com.cn/istorm-cnbr-operator/nacos/handler"
+	kubernetes "xincan.com.cn/istorm-cnbr-operator/kubernetes/handler"
+	person "xincan.com.cn/istorm-cnbr-operator/nacos/handler"
 )
 
 // Title    		路由列表

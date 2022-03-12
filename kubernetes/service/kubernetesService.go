@@ -7,8 +7,8 @@ package service
 import (
 	"errors"
 	"github.com/sirupsen/logrus"
-	"hatech.com.cn/istorm-cnbr-operator/vo"
 	"log"
+	"xincan.com.cn/istorm-cnbr-operator/vo"
 )
 
 // Title    		kubernetesService服务接口

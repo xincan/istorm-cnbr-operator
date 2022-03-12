@@ -10,13 +10,13 @@ import (
 	_ "github.com/golang/mock/gomock"
 	log "github.com/sirupsen/logrus"
 	. "github.com/smartystreets/goconvey/convey"
-	"hatech.com.cn/istorm-cnbr-operator/dto"
-	ep "hatech.com.cn/istorm-cnbr-operator/kubernetes/endpoint"
-	"hatech.com.cn/istorm-cnbr-operator/kubernetes/service"
-	resp "hatech.com.cn/istorm-cnbr-operator/utils/response"
-	"hatech.com.cn/istorm-cnbr-operator/vo"
 	"testing"
 	"time"
+	"xincan.com.cn/istorm-cnbr-operator/dto"
+	ep "xincan.com.cn/istorm-cnbr-operator/kubernetes/endpoint"
+	"xincan.com.cn/istorm-cnbr-operator/kubernetes/service"
+	resp "xincan.com.cn/istorm-cnbr-operator/utils/response"
+	"xincan.com.cn/istorm-cnbr-operator/vo"
 )
 
 var kdt = dto.KubernetesDto{

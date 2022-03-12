@@ -23,8 +23,8 @@ func NacosRegisterInstance() {
 	// Nacos服务配置
 	serverConfig := []constant.ServerConfig{
 		{
-			IpAddr: viper.GetString("nacos.client.ip"),
-			Port:   viper.GetUint64("nacos.client.port"),
+			IpAddr: viper.GetString("nacos.ip"),
+			Port:   viper.GetUint64("nacos.port"),
 		},
 	}
 	// Nacos客户端配置
@@ -32,8 +32,8 @@ func NacosRegisterInstance() {
 		TimeoutMs:           viper.GetUint64("nacos.timeoutMs"),
 		NotLoadCacheAtStart: true,
 		NamespaceId:         viper.GetString("nacos.client.namespaceId"),
-		Username:            viper.GetString("nacos.client.username"),
-		Password:            viper.GetString("nacos.client.password"),
+		Username:            viper.GetString("nacos.username"),
+		Password:            viper.GetString("nacos.password"),
 		CacheDir:            viper.GetString("nacos.cacheDir"),
 		LogDir:              viper.GetString("nacos.logDir"),
 		LogRollingConfig: &constant.ClientLogRollingConfig{
@@ -42,8 +42,8 @@ func NacosRegisterInstance() {
 	}
 	nacosConfigInstance := setNacosNamingClient(serverConfig, clientConfig)
 	boo, err := nacosConfigInstance.RegisterInstance(vo.RegisterInstanceParam{
-		Ip:          viper.GetString("nacos.client.ip"),
-		Port:        viper.GetUint64("nacos.client.port"),
+		Ip:          viper.GetString("nacos.ip"),
+		Port:        viper.GetUint64("nacos.port"),
 		ServiceName: viper.GetString("service.name"),
 		Weight:      10,
 		GroupName:   viper.GetString("nacos.client.group"),
@@ -72,8 +72,8 @@ func setNacosNamingClient(serverConfig []constant.ServerConfig, clientConfig con
 		logrus.WithField("fail", err).Error("配置Nacos租户注册中心失败")
 		return nil
 	}
-	// 是否配置nacos配置中心数据动态更新，默认为：false，不开启，使用viper进行远程更新
-	if viper.GetBool("nacos.config.enabled") {
+	// checked:[nacos, viper]  有两个选项，nacos：利用nacos原生提供config配置同步，viper：利用第三方工具进行config同步。默认使用第三方工具
+	if viper.GetString("nacos.config.checked") == "nacos" {
 		setNacosConfigClient(serverConfig, clientConfig)
 	}
 	return namingClient
@@ -101,7 +101,7 @@ func setNacosConfigClient(serverConfig []constant.ServerConfig, clientConfig con
 func setNacosConfigLister(configClient config_client.IConfigClient) {
 	configClient.ListenConfig(vo.ConfigParam{
 		DataId: viper.GetString("nacos.config.dataId"),
-		Group:  viper.GetString("nacos.client.group"),
+		Group:  viper.GetString("nacos.config.group"),
 		OnChange: func(namespace, group, dataId, data string) {
 			logrus.WithFields(logrus.Fields{
 				"dataId": dataId,
@@ -113,7 +113,7 @@ func setNacosConfigLister(configClient config_client.IConfigClient) {
 
 	data, err := configClient.GetConfig(vo.ConfigParam{
 		DataId: viper.GetString("nacos.config.dataId"),
-		Group:  viper.GetString("nacos.client.group"),
+		Group:  viper.GetString("nacos.config.group"),
 	})
 
 	if err != nil {
@@ -122,7 +122,7 @@ func setNacosConfigLister(configClient config_client.IConfigClient) {
 
 	logrus.WithFields(logrus.Fields{
 		"DataId": viper.GetString("nacos.config.dataId"),
-		"Group":  viper.GetString("nacos.client.group"),
+		"Group":  viper.GetString("nacos.config.group"),
 		"data":   data,
 	}).Info("监听Nacos配置中心数据")
 

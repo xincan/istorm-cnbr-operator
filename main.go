@@ -6,10 +6,10 @@ package main
 
 import (
 	"github.com/sirupsen/logrus"
-	"hatech.com.cn/istorm-cnbr-operator/config"
-	_ "hatech.com.cn/istorm-cnbr-operator/docs"
-	"hatech.com.cn/istorm-cnbr-operator/logs"
 	"net/http"
+	"xincan.com.cn/istorm-cnbr-operator/config"
+	_ "xincan.com.cn/istorm-cnbr-operator/docs"
+	"xincan.com.cn/istorm-cnbr-operator/logs"
 )
 
 // @Title 计算器API

@@ -12,13 +12,13 @@ import (
 	_ "github.com/golang/mock/gomock"
 	log "github.com/sirupsen/logrus"
 	. "github.com/smartystreets/goconvey/convey"
-	"hatech.com.cn/istorm-cnbr-operator/dto"
-	"hatech.com.cn/istorm-cnbr-operator/kubernetes/transport"
 	"net/http"
 	"net/url"
 	"strings"
 	"testing"
 	"time"
+	"xincan.com.cn/istorm-cnbr-operator/dto"
+	"xincan.com.cn/istorm-cnbr-operator/kubernetes/transport"
 )
 
 var number = &dto.KubernetesDto{

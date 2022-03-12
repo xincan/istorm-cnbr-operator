@@ -10,13 +10,13 @@ import (
 	_ "github.com/golang/mock/gomock"
 	log "github.com/sirupsen/logrus"
 	. "github.com/smartystreets/goconvey/convey"
-	"hatech.com.cn/istorm-cnbr-operator/utils"
-	"hatech.com.cn/istorm-cnbr-operator/utils/response"
-	"hatech.com.cn/istorm-cnbr-operator/vo"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 	"time"
+	"xincan.com.cn/istorm-cnbr-operator/utils"
+	"xincan.com.cn/istorm-cnbr-operator/utils/response"
+	"xincan.com.cn/istorm-cnbr-operator/vo"
 )
 
 var ktv = &vo.KubernetesVo{

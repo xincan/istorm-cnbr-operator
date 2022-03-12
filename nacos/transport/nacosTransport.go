@@ -7,9 +7,9 @@ package transport
 import (
 	"context"
 	"github.com/sirupsen/logrus"
-	"hatech.com.cn/istorm-cnbr-operator/dto"
 	"net/http"
 	"strconv"
+	"xincan.com.cn/istorm-cnbr-operator/dto"
 )
 
 // @Title GetPersonRequest 获取人员信息

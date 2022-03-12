@@ -7,10 +7,10 @@ package transport
 import (
 	"context"
 	"encoding/json"
-	"hatech.com.cn/istorm-cnbr-operator/dto"
 	"io/ioutil"
 	"net/http"
 	"strconv"
+	"xincan.com.cn/istorm-cnbr-operator/dto"
 )
 
 // @Title DecodeAddKubernetesRequest 求和函数

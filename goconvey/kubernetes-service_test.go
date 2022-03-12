@@ -10,9 +10,9 @@ import (
 	"github.com/golang/mock/gomock"
 	log "github.com/sirupsen/logrus"
 	. "github.com/smartystreets/goconvey/convey"
-	"hatech.com.cn/istorm-cnbr-operator/dto"
-	"hatech.com.cn/istorm-cnbr-operator/vo"
 	"testing"
+	"xincan.com.cn/istorm-cnbr-operator/dto"
+	"xincan.com.cn/istorm-cnbr-operator/vo"
 )
 
 var param = dto.KubernetesDto{

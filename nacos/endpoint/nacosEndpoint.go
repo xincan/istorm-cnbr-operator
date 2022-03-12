@@ -7,9 +7,9 @@ package endpoint
 import (
 	"context"
 	"github.com/go-kit/kit/endpoint"
-	"hatech.com.cn/istorm-cnbr-operator/dto"
-	"hatech.com.cn/istorm-cnbr-operator/nacos/service"
-	resp "hatech.com.cn/istorm-cnbr-operator/utils/response"
+	"xincan.com.cn/istorm-cnbr-operator/dto"
+	"xincan.com.cn/istorm-cnbr-operator/nacos/service"
+	resp "xincan.com.cn/istorm-cnbr-operator/utils/response"
 )
 
 // Title    		获取Nacos远程人员配置信息函数

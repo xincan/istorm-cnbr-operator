@@ -43,17 +43,17 @@ func SetViperRemoteYaml() *viper.Viper {
 	runtimeViper.SetConfigFile("./" + filName + "." + suffix)
 	_ = runtimeViper.ReadInConfig()
 	remote.SetOptions(&remote.Option{
-		Url:         configViper.GetString("nacos.client.ip"),
-		Port:        configViper.GetUint64("nacos.client.port"),
-		NamespaceId: configViper.GetString("nacos.client.namespaceId"),
-		GroupName:   configViper.GetString("nacos.client.group"),
+		Url:         configViper.GetString("nacos.ip"),
+		Port:        configViper.GetUint64("nacos.port"),
+		NamespaceId: configViper.GetString("nacos.config.namespaceId"),
+		GroupName:   configViper.GetString("nacos.config.group"),
 		Config: remote.Config{
 			DataId: configViper.GetString("nacos.config.dataId"),
 		},
 		Auth: nil,
 	})
 	remoteViper := viper.New()
-	err := remoteViper.AddRemoteProvider(provider, configViper.GetString("nacos.client.ip"), "")
+	err := remoteViper.AddRemoteProvider(provider, configViper.GetString("nacos.ip"), "")
 	remoteViper.SetConfigType(suffix)
 	err = remoteViper.ReadRemoteConfig()
 	if err == nil {

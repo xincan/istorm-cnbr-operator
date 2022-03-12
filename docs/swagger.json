@@ -181,7 +181,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Nacos操作"
+                    "Nacos获取人员信息"
                 ],
                 "summary": "获取人员信息(get请求，【query，application/json方式】，路径中有参数)",
                 "parameters": [

@@ -6,8 +6,8 @@ package service
 
 import (
 	_ "github.com/spf13/viper/remote"
-	"hatech.com.cn/istorm-cnbr-operator/config"
-	"hatech.com.cn/istorm-cnbr-operator/vo"
+	"xincan.com.cn/istorm-cnbr-operator/config"
+	"xincan.com.cn/istorm-cnbr-operator/vo"
 )
 
 // Title    		nacosService服务接口

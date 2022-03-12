@@ -7,9 +7,9 @@ package endpoint
 import (
 	"context"
 	"github.com/go-kit/kit/endpoint"
-	"hatech.com.cn/istorm-cnbr-operator/dto"
-	"hatech.com.cn/istorm-cnbr-operator/kubernetes/service"
-	resp "hatech.com.cn/istorm-cnbr-operator/utils/response"
+	"xincan.com.cn/istorm-cnbr-operator/dto"
+	"xincan.com.cn/istorm-cnbr-operator/kubernetes/service"
+	resp "xincan.com.cn/istorm-cnbr-operator/utils/response"
 )
 
 // Title    		求和结果端点函数

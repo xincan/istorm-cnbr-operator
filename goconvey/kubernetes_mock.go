@@ -6,8 +6,8 @@ package goconvey
 
 import (
 	gomock "github.com/golang/mock/gomock"
-	vo "hatech.com.cn/istorm-cnbr-operator/vo"
 	reflect "reflect"
+	vo "xincan.com.cn/istorm-cnbr-operator/vo"
 )
 
 // MockIKubernetesService is a mock of IKubernetesService interface
