@@ -15,7 +15,7 @@ nacos:
   username: nacos
   password: nacos
   cacheDir: "./tmp/log/operator/nacos/cache"
-  LogDir: "./tmp/log/operator/nacos/log"
+  logDir: "./tmp/log/operator/nacos/log"
   timeoutMs: 5000
   client:
     namespaceId: xincan-dev-0001
